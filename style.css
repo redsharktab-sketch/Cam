@@ -16,7 +16,7 @@ body {
   background: #141b2b;
   border-radius: 2rem;
   padding: 2rem 1.5rem;
-  max-width: 900px;
+  max-width: 950px;
   width: 100%;
   border: 1px solid #2a3650;
   box-shadow: 0 20px 40px rgba(0,0,0,0.7);
@@ -25,7 +25,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.8rem;
+  margin-bottom: 1.5rem;
 }
 .header h1 {
   color: #f0f4ff;
@@ -44,6 +44,33 @@ body {
   text-transform: uppercase;
   border: 1px solid #3d4b6b;
 }
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+}
+.tab {
+  background: #1b253b;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 2rem;
+  color: #9db1e6;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.tab.active {
+  background: #2f4790;
+  color: #fff;
+  border-color: #5b7cff;
+}
+.tab:hover { background: #2a3855; }
+.tab.active:hover { background: #3a5ab0; }
+.mode-panel { display: block; }
 .controls {
   background: #0f1625;
   padding: 1rem 1.2rem;
@@ -121,7 +148,7 @@ label input {
   color: #5a6f92;
   font-size: 0.75rem;
 }
-#status {
+#status, #bleStatus {
   color: #9db1e6;
   background: #1b253b;
   padding: 0.6rem 1.2rem;
@@ -159,26 +186,29 @@ label input {
   margin-bottom: 0.6rem;
 }
 .results h3 span { color: #7a9aff; }
-#cameraList {
+#cameraList, #bleDeviceList, #serviceList {
   list-style: none;
   max-height: 180px;
   overflow-y: auto;
 }
-#cameraList li {
+#cameraList li, #bleDeviceList li, #serviceList li {
   color: #d6e2ff;
   padding: 0.4rem 0.6rem;
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  cursor: pointer;
   border-bottom: 1px solid #1b253b;
+  cursor: default;
 }
-#cameraList li:hover { background: #1b253b; }
+#cameraList li:hover, #bleDeviceList li:hover { background: #1b253b; }
 #cameraList li .ip { color: #7a9aff; font-weight: 600; }
 #cameraList li .name { color: #b6c8ff; font-size: 0.9rem; }
 #cameraList li .path { color: #5a6f92; font-size: 0.8rem; }
 #cameraList li .status-icon { margin-left: auto; color: #4f9aff; }
+#bleDeviceList li .dev-name { font-weight: 600; color: #b6c8ff; }
+#bleDeviceList li .dev-id { color: #5a6f92; font-size: 0.8rem; }
+#bleDeviceList li .dev-status { margin-left: auto; font-size: 0.8rem; }
 .placeholder {
   color: #5a6f92 !important;
   cursor: default !important;
@@ -259,6 +289,17 @@ label input {
   padding: 0.5rem 0.8rem;
   border-radius: 2rem;
 }
+#bleDetailPanel {
+  margin-top: 1rem;
+}
+#bleDetailContent p {
+  color: #d6e2ff;
+  margin: 0.3rem 0;
+}
+#bleDetailContent strong { color: #9db1e6; }
+#serviceList li { font-size: 0.85rem; }
+#serviceList li .uuid { color: #7a9aff; }
+#serviceList li .chars { color: #5a6f92; font-size: 0.75rem; margin-left: 1rem; }
 .footer {
   margin-top: 1.2rem;
   text-align: center;
@@ -267,7 +308,14 @@ label input {
   border-top: 1px solid #25304a;
   padding-top: 1rem;
 }
-/* scrollbar */
-#cameraList::-webkit-scrollbar { width: 4px; }
-#cameraList::-webkit-scrollbar-track { background: #0f1625; }
-#cameraList::-webkit-scrollbar-thumb { background: #2e3d60; border-radius: 4px; }
+/* scrollbars */
+#cameraList::-webkit-scrollbar, #bleDeviceList::-webkit-scrollbar, #serviceList::-webkit-scrollbar {
+  width: 4px;
+}
+#cameraList::-webkit-scrollbar-track, #bleDeviceList::-webkit-scrollbar-track, #serviceList::-webkit-scrollbar-track {
+  background: #0f1625;
+}
+#cameraList::-webkit-scrollbar-thumb, #bleDeviceList::-webkit-scrollbar-thumb, #serviceList::-webkit-scrollbar-thumb {
+  background: #2e3d60;
+  border-radius: 4px;
+  }
