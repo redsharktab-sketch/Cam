@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IP Camera Scanner · GTOhub</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <h1><i class="fas fa-wifi"></i> Camera Scanner</h1>
+      <span class="badge">GTOhub</span>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <div class="row">
+        <button class="btn btn-primary" id="scanBtn"><i class="fas fa-search"></i> Auto‑Scan</button>
+        <button class="btn btn-danger" id="stopBtn" disabled><i class="fas fa-stop"></i> Stop</button>
+        <div class="spacer"></div>
+        <span id="ipDisplay" class="ip-label"><i class="fas fa-network-wired"></i> Detecting network…</span>
+      </div>
+      <div class="row">
+        <label>Port: 
+          <input type="number" id="scanPort" value="80" min="1" max="65535" style="width:70px;" />
+        </label>
+        <label>Timeout: 
+          <input type="number" id="timeout" value="2" min="1" max="10" style="width:60px;" /> s
+        </label>
+        <span class="hint">(Try 80, 8080, 554, 37777)</span>
+      </div>
+    </div>
+
+    <!-- Progress -->
+    <div id="status"><i class="fas fa-info-circle"></i> Ready – press Auto‑Scan</div>
+    <div class="progress" id="progressWrap" style="display:none;">
+      <div id="progressFill" style="width:0%;"></div>
+    </div>
+
+    <!-- Results -->
+    <div class="results">
+      <h3><i class="fas fa-list"></i> Found Cameras <span id="count">(0)</span></h3>
+      <ul id="cameraList">
+        <li class="placeholder"><i class="fas fa-camera"></i> No cameras discovered yet</li>
+      </ul>
+    </div>
+
+    <!-- Live Viewer -->
+    <div class="viewer">
+      <h3><i class="fas fa-eye"></i> Live Preview</h3>
+      <div class="camera-box" id="cameraBox">
+        <img id="streamImg" src="" alt="Camera feed will appear here" />
+        <div class="scan-overlay"></div>
+        <div class="scan-corner tl"></div>
+        <div class="scan-corner tr"></div>
+        <div class="scan-corner bl"></div>
+        <div class="scan-corner br"></div>
+        <div class="scan-line"></div>
+      </div>
+      <div class="manual-row">
+        <input type="text" id="manualUrl" placeholder="Or paste direct stream URL (e.g. http://192.168.1.10/stream)" />
+        <button class="btn btn-secondary" id="viewBtn"><i class="fas fa-play"></i> View</button>
+      </div>
+    </div>
+
+    <div class="footer">
+      <i class="fas fa-shield-alt"></i> Scans HTTP endpoints · results depend on camera model and CORS
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
